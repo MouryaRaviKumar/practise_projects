@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium To-Do App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>Task Master</h1>
+            <p>Manage your tasks efficiently and with style.</p>
+        </header>
+
+        <main>
+            <div class="task-input-section glass-panel">
+                <form id="task-form">
+                    <input type="text" id="title" placeholder="What needs to be done?" required>
+                    <textarea id="description" placeholder="Description (optional)" rows="2"></textarea>
+                    <div class="form-row">
+                        <select id="priority">
+                            <option value="low">Low Priority</option>
+                            <option value="medium">Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                        <button type="submit" class="btn-primary">Add Task</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="task-list-section glass-panel">
+                <div class="list-header">
+                    <h2>Your Tasks</h2>
+                    <span id="task-count">0 tasks</span>
+                </div>
+                <div id="task-list" class="task-list">
+                    <!-- Tasks will be injected here -->
+                    <div class="loading">Loading tasks...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content glass-panel">
+            <h2>Edit Task</h2>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id">
+                <input type="text" id="edit-title" required>
+                <textarea id="edit-description" rows="3"></textarea>
+                <div class="form-row">
+                    <select id="edit-priority">
+                        <option value="low">Low Priority</option>
+                        <option value="medium">Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                    <select id="edit-status">
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
