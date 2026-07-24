@@ -1,19 +1,30 @@
 from fastapi import FastAPI
-from models import createNote, updateNote, noteResponse
+from fastapi.middleware.cors import CORSMiddleware
+from models import createNote, updateNote, noteResponse, Note
+from datetime import datetime
+
 app = FastAPI()
 
-notes = []
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+notes = {}
 note_id_counter = 0
 
 @app.get("/api/notes")
 def get_notes():
-    return notes
+    return list(notes.values())
 
 @app.post("/api/notes")
 def create_notes(note: createNote):
     global note_id_counter
     note_id_counter += 1
-    new_note = note(id=note_id_counter, **note.dict())
+    new_note = Note(id=note_id_counter, **note.dict())
     notes[note_id_counter] = new_note
     return noteResponse(**new_note.dict())
 
@@ -31,6 +42,7 @@ def update_note(note_id: int, updated_note: updateNote):
     note = notes[note_id]
     for field, value in updated_note.dict(exclude_unset=True).items():
         setattr(note, field, value)
+    note.updated_at = datetime.utcnow()
     return noteResponse(**note.dict())
 
 @app.delete("/api/notes/{note_id}")
