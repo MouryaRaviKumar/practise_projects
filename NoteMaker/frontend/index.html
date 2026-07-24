@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A beautiful and simple note management application.">
+    <title>📝 NoteMaker - Your Premium Note Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>NoteMaker</h1>
+            <p>Capture your ideas effortlessly</p>
+        </header>
+
+        <section class="create-note-section">
+            <form id="note-form">
+                <input type="text" id="note-title" placeholder="Title..." required />
+                <textarea id="note-content" placeholder="Take a note..." required rows="4"></textarea>
+                <button type="submit" id="save-btn">Save Note</button>
+            </form>
+        </section>
+
+        <section class="notes-display-section">
+            <div id="notes-grid" class="notes-grid">
+                <!-- Notes will be injected here via JS -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Edit Note</h2>
+            <form id="edit-form">
+                <input type="hidden" id="edit-note-id">
+                <input type="text" id="edit-note-title" required />
+                <textarea id="edit-note-content" required rows="6"></textarea>
+                <div class="modal-actions">
+                    <button type="button" id="cancel-edit" class="btn-cancel">Cancel</button>
+                    <button type="submit" id="update-edit" class="btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
