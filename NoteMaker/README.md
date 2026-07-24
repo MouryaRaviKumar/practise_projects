@@ -1,18 +1,18 @@
 # 📝 NoteMaker
 
-A simple full-stack Note Management application built with **FastAPI** for the backend and **HTML + CSS** for the frontend. The application allows users to create, view, update, and delete notes through a clean and minimal interface.
+A simple full-stack Note Management application built with **FastAPI** for the backend and **HTML, CSS, and JS (Fetch API)** for the frontend. The application features a modern, responsive Glassmorphism UI and allows users to seamlessly create, view, update, and delete notes.
 
 ---
 
 ## 🚀 Features
 
-- ➕ Create new notes
-- 📋 View all notes
-- ✏️ Update existing notes
-- 🗑️ Delete notes
-- ⚡ FastAPI REST API
-- 🎨 Simple HTML & CSS frontend
-- 📱 Responsive and beginner-friendly UI
+- ➕ Create new notes instantly
+- 📋 View all notes sorted by last updated
+- ✏️ Update existing notes easily via modal
+- 🗑️ Delete notes with confirmation
+- ⚡ FastAPI REST API backend with CORS configured
+- 🎨 Premium HTML & CSS frontend with Glassmorphism design
+- 📱 Fully responsive and intuitive UI
 
 ---
 
@@ -21,33 +21,29 @@ A simple full-stack Note Management application built with **FastAPI** for the b
 ### Backend
 - FastAPI
 - Pydantic
-- Uvicorn
+- Uvicorn (ASGI server)
 
 ### Frontend
 - HTML5
-- CSS3
+- CSS3 (Vanilla, custom UI tokens)
 - JavaScript (Fetch API)
 
 ---
 
 ## 📁 Project Structure
 
-```
+```text
 NoteMaker/
 │
 ├── backend/
-│   ├── main.py
-│   ├── models.py
-│   ├── schemas.py
-│   ├── database.py
-│   ├── crud.py
-│   ├── requirements.txt
-│   └── static/
+│   ├── app.py              # Main FastAPI application and routes
+│   ├── models.py           # Pydantic data models
+│   └── requirements.txt    # Python dependencies
 │
 ├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+│   ├── index.html          # Main application UI
+│   ├── style.css           # Glassmorphism styling and responsive layout
+│   └── script.js           # API interactions and DOM manipulation
 │
 ├── README.md
 └── .gitignore
@@ -86,6 +82,8 @@ source venv/bin/activate
 pip install -r backend/requirements.txt
 ```
 
+*(If `requirements.txt` does not exist, simply run `pip install fastapi uvicorn pydantic`)*
+
 ---
 
 ## ▶️ Run the Backend
@@ -94,24 +92,24 @@ Navigate to the backend folder and start the FastAPI server:
 
 ```bash
 cd backend
-uvicorn main:app --reload
+uvicorn app:app --reload
 ```
 
 The API will be available at:
 
-```
+```text
 http://127.0.0.1:8000
 ```
 
 Interactive API documentation:
 
 - Swagger UI:
-  ```
+  ```text
   http://127.0.0.1:8000/docs
   ```
 
 - ReDoc:
-  ```
+  ```text
   http://127.0.0.1:8000/redoc
   ```
 
@@ -119,15 +117,15 @@ Interactive API documentation:
 
 ## 🌐 Run the Frontend
 
+The frontend runs completely independently in the browser and connects via API.
+
 Simply open:
 
-```
+```text
 frontend/index.html
 ```
 
-in your web browser.
-
-If your frontend communicates with the FastAPI server, make sure the backend is running.
+in your web browser. Make sure your FastAPI backend is running simultaneously so the notes load properly.
 
 ---
 
@@ -135,10 +133,8 @@ If your frontend communicates with the FastAPI server, make sure the backend is 
 
 | Method | Endpoint | Description |
 |---------|----------|-------------|
-| GET | `/notes` | Get all notes |
-| GET | `/notes/{id}` | Get a note by ID |
-| POST | `/notes` | Create a new note |
-| PUT | `/notes/{id}` | Update a note |
-| DELETE | `/notes/{id}` | Delete a note |
-
-
+| GET | `/api/notes` | Get all notes |
+| GET | `/api/notes/{id}` | Get a note by ID |
+| POST | `/api/notes` | Create a new note |
+| PUT | `/api/notes/{id}` | Update a note |
+| DELETE | `/api/notes/{id}` | Delete a note |
